@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import Container from "@mui/material/Container";
-import ListPage from "./Components/ListPage";
-import DetailsPage from "./Components/DetailsPage";
+import React, { lazy, Suspense, useState } from "react";
+import { Container, Box, CircularProgress } from "@mui/material";
+
 import NewRecordForm from "./Components/NewRecordForm";
+import DetailsPage from "./Components/DetailsPage";
 
 function App() {
+  const ListPage = lazy(() => import("./Components/ListPage"));
+
   const [clickedID, setClickedID] = useState();
+
   return (
     <div>
       <header>
@@ -15,7 +18,23 @@ function App() {
       </header>
       <section>
         <NewRecordForm />
-        <ListPage setClickedID={setClickedID} />
+
+        <Suspense
+          fallback={
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                paddingTop: "3rem",
+              }}
+            >
+              <CircularProgress size={"3.5rem"} />
+            </Box>
+          }
+        >
+          <ListPage setClickedID={setClickedID} />
+        </Suspense>
+
         <DetailsPage clickedID={clickedID} />
       </section>
     </div>
