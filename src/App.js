@@ -1,7 +1,10 @@
+import React, { useState } from "react";
 import Container from "@mui/material/Container";
 import ListPage from "./Components/ListPage";
+import DetailsPage from "./Components/DetailsPage";
 
 function App() {
+  const [clickedID, setClickedID] = useState();
   return (
     <div>
       <header>
@@ -10,7 +13,8 @@ function App() {
         </Container>
       </header>
       <section>
-        <ListPage />
+        <ListPage setClickedID={setClickedID} />
+        <DetailsPage clickedID={clickedID} />
       </section>
     </div>
   );
