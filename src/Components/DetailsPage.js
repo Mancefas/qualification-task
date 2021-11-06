@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Box, Paper } from "@mui/material";
+import { Container, Box } from "@mui/material";
 
 const DetailsPage = (props) => {
   const { clickedID } = props;
@@ -15,8 +15,6 @@ const DetailsPage = (props) => {
     };
     dataWithID();
   }, [clickedID]);
-
-  console.log(moreInfo);
 
   return (
     <Container>

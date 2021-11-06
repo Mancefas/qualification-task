@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Container from "@mui/material/Container";
 import ListPage from "./Components/ListPage";
 import DetailsPage from "./Components/DetailsPage";
+import NewRecordForm from "./Components/NewRecordForm";
 
 function App() {
   const [clickedID, setClickedID] = useState();
@@ -13,6 +14,7 @@ function App() {
         </Container>
       </header>
       <section>
+        <NewRecordForm />
         <ListPage setClickedID={setClickedID} />
         <DetailsPage clickedID={clickedID} />
       </section>
