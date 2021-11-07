@@ -38,12 +38,12 @@ const ListPage = (props) => {
 
   const columns = [
     { field: "col1", headerName: "User ID", width: 100 },
-    { field: "col2", headerName: "Title", width: 500 },
+    { field: "col2", headerName: "Title", width: 900 },
   ];
 
   return (
     <Container>
-      <div style={{ height: "75vh", width: "90%" }}>
+      <div style={{ height: "75vh", width: "90%", overflow: "hidden" }}>
         {listData.length > 0 && (
           <DataGrid onCellClick={clicked} rows={rows} columns={columns} />
         )}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Box, Paper } from "@mui/material";
+import { Container, Box, Paper, Avatar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import classes from "./DetailsPage.module.css";
 
 const DetailsPage = (props) => {
   const {
@@ -11,6 +12,7 @@ const DetailsPage = (props) => {
   } = props;
   const [moreInfo, setMoreInfo] = useState();
 
+  //useEffect and fetch data from API, not from 1st API call data, but new API call,  because task shows 3 API endpoints to use
   useEffect(() => {
     const dataWithID = async () => {
       const response = await fetch(
@@ -47,15 +49,30 @@ const DetailsPage = (props) => {
               textAlign: "center",
               display: "flex",
               flexDirection: "column",
-              paddingTop: "2rem",
+
               paddingBottom: "3rem",
             }}
           >
-            <h3>User id {moreInfo.userId}</h3>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <p>User id </p>
+              <Avatar sx={{ backgroundColor: "#1976D2" }}>
+                {moreInfo.userId}
+              </Avatar>
+            </Box>
 
-            <h3>{moreInfo.title}</h3>
+            <p>Title </p>
+            <h3 className={classes.text}>{moreInfo.title}</h3>
 
-            <h3>{moreInfo.body}</h3>
+            <p>Text body</p>
+            <h3 className={classes.text}>{moreInfo.body}</h3>
           </Box>
         </Paper>
       )}
