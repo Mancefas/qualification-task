@@ -3,6 +3,7 @@ import { Container, Box, CircularProgress, Typography } from "@mui/material";
 
 import NewRecordForm from "./Components/NewRecordForm";
 import DetailsPage from "./Components/DetailsPage";
+import Footer from "./Footer";
 
 import Context from "./store/Context";
 
@@ -54,6 +55,7 @@ function App() {
 
         {context.showDetailsPage && <DetailsPage />}
       </section>
+      <Footer />
     </>
   );
 }

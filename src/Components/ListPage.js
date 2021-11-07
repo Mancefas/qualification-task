@@ -40,7 +40,7 @@ const ListPage = () => {
   ];
 
   return (
-    <Container>
+    <Container sx={{ paddingBottom: "2rem" }}>
       <div style={{ height: "75vh", width: "90%", overflow: "hidden" }}>
         {listData.length > 0 && (
           <DataGrid onCellClick={clicked} rows={rows} columns={columns} />

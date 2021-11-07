@@ -29,7 +29,7 @@ const DetailsPage = () => {
   };
 
   return (
-    <Container>
+    <Container sx={{ paddingBottom: "2rem" }}>
       {moreInfo && (
         <Paper elevation={8} sx={{ height: "fit-content" }}>
           <Box
