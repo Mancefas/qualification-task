@@ -2,7 +2,8 @@ import React, { useState, useRef } from "react";
 import { Button, Container } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
-const NewRecordForm = () => {
+const NewRecordForm = (props) => {
+  const { setShowListPage, showListPage } = props;
   const [show, setShow] = useState(false);
   const userIdRef = useRef();
   const titleRef = useRef();
@@ -10,6 +11,7 @@ const NewRecordForm = () => {
 
   const newPostHandler = () => {
     setShow(!show);
+    setShowListPage(!showListPage);
   };
 
   const postHandler = async () => {
@@ -31,12 +33,21 @@ const NewRecordForm = () => {
     userIdRef.current.value = "";
     titleRef.current.value = "";
     textRef.current.value = "";
+
+    setShow(false);
+    setShowListPage(true);
+
+    //console.log to show object made from form, because it doesn't show up anywhere
     console.log(data);
   };
 
   return (
     <Container>
-      <Button onClick={newPostHandler} variant={"contained"} sx={{}}>
+      <Button
+        onClick={newPostHandler}
+        variant={"contained"}
+        sx={{ margin: "1rem" }}
+      >
         Press me for new post
       </Button>
 
@@ -56,7 +67,6 @@ const NewRecordForm = () => {
             label="User id"
             id="user-id"
             fullWidth
-            label="User id"
           />
           <TextField
             type={"text"}
@@ -64,7 +74,6 @@ const NewRecordForm = () => {
             label="Title"
             id="title"
             fullWidth
-            label="Title"
           />
           <TextField
             type={"text"}
@@ -72,7 +81,6 @@ const NewRecordForm = () => {
             label="Text"
             id="body"
             fullWidth
-            label="Text"
           />
           <Button onClick={postHandler}>Post it </Button>
         </Container>
