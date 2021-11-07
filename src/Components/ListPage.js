@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Container from "@mui/material/Container";
 
-const ListPage = (props) => {
-  const {
-    setClickedID,
-    setShowDetailsPage,
-    setShowListPage,
-    setShowNewRecordForm,
-  } = props;
+import Context from "../store/Context";
+
+const ListPage = () => {
+  const context = useContext(Context);
+
   const [listData, setListData] = useState([]);
 
   useEffect(() => {
@@ -24,10 +22,10 @@ const ListPage = (props) => {
   }, []);
 
   const clicked = (event) => {
-    setClickedID(event.id);
-    setShowDetailsPage(true);
-    setShowListPage(false);
-    setShowNewRecordForm(false);
+    context.setClickedID(event.id);
+    context.setShowDetailsPage(true);
+    context.setShowListPage(false);
+    context.setShowNewRecordForm(false);
   };
 
   const rows = listData.map((elm) => ({

@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Box, Paper, Avatar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import classes from "./DetailsPage.module.css";
 
-const DetailsPage = (props) => {
-  const {
-    clickedID,
-    setShowDetailsPage,
-    setShowListPage,
-    setShowNewRecordForm,
-  } = props;
+import Context from "../store/Context";
+
+const DetailsPage = () => {
+  const context = useContext(Context);
+
   const [moreInfo, setMoreInfo] = useState();
 
   //useEffect and fetch data from API, not from 1st API call data, but new API call,  because task shows 3 API endpoints to use
   useEffect(() => {
     const dataWithID = async () => {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${clickedID}`
+        `https://jsonplaceholder.typicode.com/posts/${context.clickedID}`
       );
       const data = await response.json();
       setMoreInfo(data);
     };
     dataWithID();
-  }, [clickedID]);
+  }, [context.clickedID]);
 
   const closeHandler = () => {
-    setShowDetailsPage(false);
-    setShowListPage(true);
-    setShowNewRecordForm(true);
+    context.setShowDetailsPage(false);
+    context.setShowListPage(true);
+    context.setShowNewRecordForm(true);
   };
 
   return (

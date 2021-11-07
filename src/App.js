@@ -1,38 +1,30 @@
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useContext } from "react";
 import { Container, Box, CircularProgress, Typography } from "@mui/material";
 
 import NewRecordForm from "./Components/NewRecordForm";
 import DetailsPage from "./Components/DetailsPage";
 
+import Context from "./store/Context";
+
 function App() {
   const ListPage = lazy(() => import("./Components/ListPage"));
-
-  const [clickedID, setClickedID] = useState();
-  const [showListPage, setShowListPage] = useState(true);
-  const [showNewRecordForm, setShowNewRecordForm] = useState(true);
-  const [showDetailsPage, setShowDetailsPage] = useState(false);
+  const context = useContext(Context);
 
   return (
     <div>
       <header>
         <Container maxWidth="sm" sx={{ textAlign: "center" }}>
           <Typography variant="h2" component="div">
-            {showListPage === true
+            {context.showListPage === true
               ? "Task 1"
-              : showDetailsPage === true
+              : context.showDetailsPage === true
               ? "Task 2"
               : "Task 3"}
           </Typography>
         </Container>
       </header>
       <section>
-        {showNewRecordForm && (
-          <NewRecordForm
-            setShowListPage={setShowListPage}
-            showListPage={showListPage}
-          />
-        )}
-
+        {context.showNewRecordForm && <NewRecordForm />}
         <Suspense
           fallback={
             <Box
@@ -46,24 +38,10 @@ function App() {
             </Box>
           }
         >
-          {showListPage && (
-            <ListPage
-              setClickedID={setClickedID}
-              setShowDetailsPage={setShowDetailsPage}
-              setShowListPage={setShowListPage}
-              setShowNewRecordForm={setShowNewRecordForm}
-            />
-          )}
+          {context.showListPage && <ListPage />}
         </Suspense>
 
-        {showDetailsPage && (
-          <DetailsPage
-            clickedID={clickedID}
-            setShowDetailsPage={setShowDetailsPage}
-            setShowListPage={setShowListPage}
-            setShowNewRecordForm={setShowNewRecordForm}
-          />
-        )}
+        {context.showDetailsPage && <DetailsPage />}
       </section>
     </div>
   );

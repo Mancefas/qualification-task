@@ -1,9 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Button, Container } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
+import Context from "../store/Context";
+
 const NewRecordForm = (props) => {
-  const { setShowListPage, showListPage } = props;
+  const context = useContext(Context);
+
   const [show, setShow] = useState(false);
   const userIdRef = useRef();
   const titleRef = useRef();
@@ -11,7 +14,7 @@ const NewRecordForm = (props) => {
 
   const newPostHandler = () => {
     setShow(!show);
-    setShowListPage(!showListPage);
+    context.setShowListPage(!context.showListPage);
   };
 
   const postHandler = async () => {
@@ -35,7 +38,7 @@ const NewRecordForm = (props) => {
     textRef.current.value = "";
 
     setShow(false);
-    setShowListPage(true);
+    context.setShowListPage(true);
 
     //console.log to show object made from form, because it doesn't show up anywhere
     console.log(data);
