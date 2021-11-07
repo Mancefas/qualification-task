@@ -11,10 +11,21 @@ function App() {
   const context = useContext(Context);
 
   return (
-    <div>
+    <>
       <header>
-        <Container maxWidth="sm" sx={{ textAlign: "center" }}>
-          <Typography variant="h2" component="div">
+        <Container
+          sx={{
+            height: "fit-content",
+            display: "flex",
+            justifyContent: "flex-start",
+            padding: "1rem",
+          }}
+        >
+          <Typography
+            variant="h3"
+            component="div"
+            sx={{ fontFamily: "Mochiy Pop One, sans-serif;" }}
+          >
             {context.showListPage === true
               ? "Task 1"
               : context.showDetailsPage === true
@@ -43,7 +54,7 @@ function App() {
 
         {context.showDetailsPage && <DetailsPage />}
       </section>
-    </div>
+    </>
   );
 }
 
