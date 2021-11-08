@@ -1,11 +1,5 @@
 import React, { lazy, Suspense, useContext } from "react";
-import {
-  Container,
-  Box,
-  CircularProgress,
-  Typography,
-  Button,
-} from "@mui/material";
+import { Container, Box, CircularProgress, Typography } from "@mui/material";
 
 import Footer from "./Footer";
 
