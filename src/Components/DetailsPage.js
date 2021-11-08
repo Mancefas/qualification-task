@@ -31,7 +31,7 @@ const DetailsPage = () => {
   }, [context.clickedID]);
 
   return (
-    <Container sx={{ paddingBottom: "2rem" }}>
+    <Container sx={{ paddingBottom: "2rem", paddingTop: "12vh" }}>
       {context.error1 && (
         <Container
           sx={{
