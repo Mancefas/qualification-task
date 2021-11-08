@@ -4,18 +4,12 @@ import TextField from "@mui/material/TextField";
 
 import Context from "../store/Context";
 
-const NewRecordForm = (props) => {
+const NewRecordForm = () => {
   const context = useContext(Context);
 
-  const [show, setShow] = useState(false);
   const userIdRef = useRef();
   const titleRef = useRef();
   const textRef = useRef();
-
-  const newPostHandler = () => {
-    setShow(!show);
-    context.setShowListPage(!context.showListPage);
-  };
 
   const postHandler = async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
@@ -37,7 +31,7 @@ const NewRecordForm = (props) => {
     titleRef.current.value = "";
     textRef.current.value = "";
 
-    setShow(false);
+    context.setShow(false);
     context.setShowListPage(true);
 
     //console.log to show object made from form, because it doesn't show up anywhere
@@ -47,21 +41,21 @@ const NewRecordForm = (props) => {
   return (
     <Container>
       <Button
-        onClick={newPostHandler}
         variant={"contained"}
         sx={{ margin: "1rem" }}
+        onClick={context.newPostHandler}
       >
         Press me for new post
       </Button>
-
-      {show && (
+      {context.show && (
         <Container
           sx={{
             padding: "1rem",
             display: "flex",
             flexDirection: "column",
             gap: "2rem",
-            height: "90vh",
+            height: "fit-content",
+            minHeight: "80vh",
           }}
         >
           <TextField

@@ -30,12 +30,6 @@ const DetailsPage = () => {
     // eslint-disable-next-line
   }, [context.clickedID]);
 
-  const closeHandler = () => {
-    context.setShowDetailsPage(false);
-    context.setShowListPage(true);
-    context.setShowNewRecordForm(true);
-  };
-
   return (
     <Container sx={{ paddingBottom: "2rem" }}>
       {context.error1 && (
@@ -61,7 +55,7 @@ const DetailsPage = () => {
               padding: "1rem",
             }}
           >
-            <CloseIcon onClick={closeHandler} />
+            <CloseIcon onClick={context.closeHandler} />
           </Box>
           <Box
             sx={{

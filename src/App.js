@@ -1,8 +1,12 @@
 import React, { lazy, Suspense, useContext } from "react";
-import { Container, Box, CircularProgress, Typography } from "@mui/material";
+import {
+  Container,
+  Box,
+  CircularProgress,
+  Typography,
+  Button,
+} from "@mui/material";
 
-import NewRecordForm from "./Components/NewRecordForm";
-// import DetailsPage from "./Components/DetailsPage";
 import Footer from "./Footer";
 
 import Context from "./store/Context";
@@ -10,6 +14,7 @@ import Context from "./store/Context";
 function App() {
   const ListPage = lazy(() => import("./Components/ListPage"));
   const DetailsPage = lazy(() => import("./Components/DetailsPage"));
+  const NewRecordForm = lazy(() => import("./Components/NewRecordForm"));
   const context = useContext(Context);
 
   return (
@@ -37,7 +42,6 @@ function App() {
         </Container>
       </header>
       <section>
-        {context.showNewRecordForm && <NewRecordForm />}
         <Suspense
           fallback={
             <Box
@@ -51,6 +55,7 @@ function App() {
             </Box>
           }
         >
+          {context.showNewRecordForm && <NewRecordForm />}
           {context.showListPage && <ListPage />}
           {context.showDetailsPage && <DetailsPage />}
         </Suspense>
