@@ -35,7 +35,7 @@ const DetailsPage = () => {
       {context.error1 && (
         <Container
           sx={{
-            height: "65vh",
+            height: "90vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
