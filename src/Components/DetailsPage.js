@@ -13,13 +13,21 @@ const DetailsPage = () => {
   //useEffect and fetch data from API, not from 1st API call data, but new API call,  because task shows 3 API endpoints to use
   useEffect(() => {
     const dataWithID = async () => {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${context.clickedID}`
-      );
-      const data = await response.json();
-      setMoreInfo(data);
+      try {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${context.clickedID}`
+        );
+        if (!response.ok) {
+          context.setError("Something went wrong!!!");
+        }
+        const data = await response.json();
+        setMoreInfo(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     dataWithID();
+    // eslint-disable-next-line
   }, [context.clickedID]);
 
   const closeHandler = () => {
@@ -30,7 +38,20 @@ const DetailsPage = () => {
 
   return (
     <Container sx={{ paddingBottom: "2rem" }}>
-      {moreInfo && (
+      {context.error1 && (
+        <Container
+          sx={{
+            height: "65vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "red",
+          }}
+        >
+          {context.error1}
+        </Container>
+      )}
+      {moreInfo && !context.error && (
         <Paper elevation={8} sx={{ height: "fit-content" }}>
           <Box
             sx={{

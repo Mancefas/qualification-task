@@ -9,6 +9,8 @@ const Context = React.createContext({
   setShowNewRecordForm: () => {},
   showDetailsPage: false,
   setShowDetailsPage: () => {},
+  error: null,
+  setError: () => {},
 });
 
 export const ContextProvider = (props) => {
@@ -16,6 +18,8 @@ export const ContextProvider = (props) => {
   const [showListPage, setShowListPage] = useState(true);
   const [showNewRecordForm, setShowNewRecordForm] = useState(true);
   const [showDetailsPage, setShowDetailsPage] = useState(false);
+
+  const [error, setError] = useState();
 
   return (
     <Context.Provider
@@ -28,6 +32,8 @@ export const ContextProvider = (props) => {
         setShowNewRecordForm,
         showDetailsPage,
         setShowDetailsPage,
+        error,
+        setError,
       }}
     >
       {props.children}
