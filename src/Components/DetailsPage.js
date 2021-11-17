@@ -18,12 +18,12 @@ const DetailsPage = () => {
           `https://jsonplaceholder.typicode.com/posts/${context.clickedID}`
         );
         if (!response.ok) {
-          context.setError("Something went wrong!!!");
+          throw "Something went wrong!!!";
         }
         const data = await response.json();
         setMoreInfo(data);
       } catch (error) {
-        console.log(error);
+        context.setErrorDetailsPage(error);
       }
     };
     dataWithID();
@@ -32,7 +32,7 @@ const DetailsPage = () => {
 
   return (
     <Container sx={{ paddingBottom: "2rem", paddingTop: "12vh" }}>
-      {context.error1 && (
+      {context.errorDetailsPage && (
         <Container
           sx={{
             height: "90vh",
@@ -42,7 +42,7 @@ const DetailsPage = () => {
             color: "red",
           }}
         >
-          {context.error1}
+          {context.errorDetailsPage}
         </Container>
       )}
       {moreInfo && !context.error && (

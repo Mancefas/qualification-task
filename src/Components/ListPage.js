@@ -10,15 +10,23 @@ const ListPage = () => {
   const [listData, setListData] = useState([]);
 
   useEffect(() => {
-    const initDataApiCall = async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
-      const data = await response.json();
-      setListData(data);
+    const listDataApiCall = async () => {
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/posts"
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw "Error from server";
+        }
+        setListData(data);
+      } catch (error) {
+        context.setErrorListPage(error);
+      }
     };
 
-    initDataApiCall();
+    listDataApiCall();
   }, []);
 
   const clicked = (event) => {
@@ -41,8 +49,22 @@ const ListPage = () => {
 
   return (
     <Container sx={{ paddingBottom: "2rem" }}>
+      {context.errorListPage && (
+        <Container
+          sx={{
+            height: "90vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "red",
+          }}
+        >
+          {context.errorListPage}
+        </Container>
+      )}
+
       <div style={{ height: "75vh", width: "90%", overflow: "hidden" }}>
-        {listData.length > 0 && (
+        {listData.length > 0 && !context.errorListPage && (
           <DataGrid onCellClick={clicked} rows={rows} columns={columns} />
         )}
       </div>
