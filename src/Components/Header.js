@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import Context from "../store/Context";
 
 const Header = () => {
   const context = useContext(Context);
+  const clickedLogoHandler = () => {
+    context.setShowListPage(true);
+  };
+
   return (
     <>
       <header>
@@ -12,21 +17,37 @@ const Header = () => {
           sx={{
             height: "fit-content",
             display: "flex",
+            flexDirection: "row",
             justifyContent: "flex-start",
             padding: "1rem",
           }}
         >
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontFamily: "Mochiy Pop One, sans-serif;" }}
+          <Link
+            to="/"
+            style={{ textDecoration: "none", color: "green" }}
+            onClick={clickedLogoHandler}
           >
-            {context.showListPage === true
-              ? "Task 1"
-              : context.showDetailsPage === true
-              ? "Task 2"
-              : "Task 3"}
-          </Typography>
+            <Typography
+              variant="h3"
+              component="div"
+              sx={{ fontFamily: "Mochiy Pop One, sans-serif;" }}
+            >
+              Task 1
+            </Typography>
+          </Link>
+          <Button variant="contained">
+            <Link
+              to="/form-page"
+              onClick={context.closeHandler}
+              style={{
+                textDecoration: "none",
+                color: "white",
+                fontSize: "1rem",
+              }}
+            >
+              Press me for new post
+            </Link>
+          </Button>
         </Container>
       </header>
     </>

@@ -31,7 +31,7 @@ const DetailsPage = () => {
 
   return (
     <Container
-      sx={{ paddingBottom: "2rem", paddingTop: "12vh", minHeight: "90vh" }}
+      sx={{ paddingBottom: "2rem", paddingTop: "2vh", minHeight: "90vh" }}
     >
       {context.errorDetailsPage && (
         <Container

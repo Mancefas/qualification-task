@@ -1,40 +1,28 @@
-import React, { lazy, Suspense, useContext } from "react";
-import { Box, CircularProgress } from "@mui/material";
+import React, { useContext } from "react";
+
+import { Route } from "react-router-dom";
 
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
+import NewRecordFormPage from "./Components/NewRecordFormPage";
+import ListPage from "./Components/ListPage";
+import DetailsPage from "./Components/DetailsPage";
 
 import Context from "./store/Context";
 
 function App() {
-  const ListPage = lazy(() => import("./Components/ListPage"));
-  const DetailsPage = lazy(() => import("./Components/DetailsPage"));
-  const NewRecordForm = lazy(() => import("./Components/NewRecordFormPage"));
   const context = useContext(Context);
 
   return (
     <>
       <Header />
       <section>
-        <Suspense
-          fallback={
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-around",
-                paddingTop: "3rem",
-                minHeight: "90vh",
-              }}
-            >
-              <CircularProgress size={"3.5rem"} />
-            </Box>
-          }
-        >
-          {context.showNewRecordForm && <NewRecordForm />}
-          {context.showListPage && <ListPage />}
-          {context.showDetailsPage && <DetailsPage />}
-        </Suspense>
+        <Route path="/form-page">
+          <NewRecordFormPage />
+        </Route>
+        <Route path="/">{context.showListPage && <ListPage />}</Route>
       </section>
+      <section>{context.showDetailsPage && <DetailsPage />}</section>
       <Footer />
     </>
   );
