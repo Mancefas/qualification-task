@@ -12,7 +12,7 @@ Task2
 Paspaudus ant lentelės eilutės rodoma daugiau įrašo detalių. Daugiau detalių gaunama iš dar vieno API call (https://jsonplaceholder.typicode.com/posts/{ID}).
 Galima buvo filtruoti pirmo API call duomenis ir pateikti juos, bet panaudotas antras API endpoint
 
-#Kodo review/feedback galimų pataisymų sąrašas
+# Kodo review/feedback galimų pataisymų sąrašas
 
 - [x] Task 3
       Trečias puslapis (patenkama paspaudus mygtuką pridėti, kuris yra pirmajame puslapyje) skirtas sukurti naują įrašą (New record form).
