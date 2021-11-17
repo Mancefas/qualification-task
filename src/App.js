@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import NewRecordFormPage from "./Components/NewRecordFormPage";
+import NewRecordFormPage from "./Pages/NewRecordFormPage";
 import ListPage from "./Components/ListPage";
 import DetailsPage from "./Components/DetailsPage";
 
