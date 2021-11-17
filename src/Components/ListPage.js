@@ -18,7 +18,8 @@ const ListPage = () => {
         const data = await response.json();
 
         if (!response.ok) {
-          throw "Error from server";
+          context.setErrorListPage("Error from server");
+          return;
         }
         setListData(data);
       } catch (error) {
@@ -27,6 +28,7 @@ const ListPage = () => {
     };
 
     listDataApiCall();
+    // eslint-disable-next-line
   }, []);
 
   const clicked = (event) => {

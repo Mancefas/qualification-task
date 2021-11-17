@@ -18,7 +18,7 @@ const DetailsPage = () => {
           `https://jsonplaceholder.typicode.com/posts/${context.clickedID}`
         );
         if (!response.ok) {
-          throw "Something went wrong!!!";
+          context.setErrorDetailsPage("Something went wrong!!!!");
         }
         const data = await response.json();
         setMoreInfo(data);
@@ -45,7 +45,7 @@ const DetailsPage = () => {
           {context.errorDetailsPage}
         </Container>
       )}
-      {moreInfo && !context.error && (
+      {moreInfo && !context.errorDetailsPage && (
         <Paper elevation={8} sx={{ height: "fit-content" }}>
           <Box
             sx={{
