@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useContext } from "react";
-import { Container, Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
+import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 
 import Context from "./store/Context";
@@ -13,28 +14,7 @@ function App() {
 
   return (
     <>
-      <header>
-        <Container
-          sx={{
-            height: "fit-content",
-            display: "flex",
-            justifyContent: "flex-start",
-            padding: "1rem",
-          }}
-        >
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontFamily: "Mochiy Pop One, sans-serif;" }}
-          >
-            {context.showListPage === true
-              ? "Task 1"
-              : context.showDetailsPage === true
-              ? "Task 2"
-              : "Task 3"}
-          </Typography>
-        </Container>
-      </header>
+      <Header />
       <section>
         <Suspense
           fallback={
