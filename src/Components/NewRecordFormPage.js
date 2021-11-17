@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Container } from "@mui/material";
-import TextField from "@mui/material/TextField";
+import { Button, Container, TextField, Alert } from "@mui/material";
 
 import Context from "../store/Context";
 
@@ -67,13 +66,18 @@ const NewRecordFormPage = () => {
           },
         }
       );
-      const data = await response.json();
       if (!response.ok) {
         context.setNewFormError("Error from serveer");
         return;
       }
+      const data = await response.json();
       console.log(data);
+      context.setFromSent(true);
+      setTimeout(() => {
+        context.setFromSent(false);
+      }, 2000);
     } catch (error) {
+      console.log(error.value);
       context.setNewFormError(error);
     }
 
@@ -89,6 +93,9 @@ const NewRecordFormPage = () => {
 
   return (
     <Container>
+      {context.formSent === true && (
+        <Alert severity="success">Form is sent!</Alert>
+      )}
       <Button
         variant={"contained"}
         sx={{ margin: "1rem" }}
