@@ -35,19 +35,17 @@ const Header = () => {
               Task 1
             </Typography>
           </Link>
-          <Button variant="contained">
-            <Link
-              to="/form-page"
-              onClick={context.closeHandler}
-              style={{
-                textDecoration: "none",
-                color: "white",
-                fontSize: "1rem",
-              }}
-            >
-              Press me for new post
-            </Link>
-          </Button>
+          <Link
+            to="/form-page"
+            onClick={context.closeHandler}
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontSize: "1rem",
+            }}
+          >
+            <Button variant="contained">Press me for new post</Button>
+          </Link>
         </Container>
       </header>
     </>

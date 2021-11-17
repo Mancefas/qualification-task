@@ -76,13 +76,12 @@ const NewRecordFormPage = () => {
         return;
       }
       const data = await response.json();
-      console.log(data);
+      context.setNewFormData(data);
       context.setFromSent(true);
       setTimeout(() => {
         context.setFromSent(false);
       }, 2000);
     } catch (error) {
-      console.log(error.value);
       context.setNewFormError(error);
     }
 
@@ -91,8 +90,6 @@ const NewRecordFormPage = () => {
     setUserText("");
 
     context.setShowListPage(true);
-
-    //console.log to show object made from form, because it doesn't show up anywhere
   };
 
   return (
@@ -173,7 +170,7 @@ const NewRecordFormPage = () => {
             />
 
             <Button
-              variant="outlined"
+              variant="contained"
               disabled={!formInputsValid}
               onClick={postHandler}
             >
