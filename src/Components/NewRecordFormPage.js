@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Container, TextField, Alert } from "@mui/material";
 
 import Context from "../store/Context";
+import config from "../config.json";
 
 const NewRecordFormPage = () => {
   const context = useContext(Context);
@@ -52,20 +53,17 @@ const NewRecordFormPage = () => {
 
   const postHandler = async () => {
     try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            title: userTitle,
-            body: userText,
-            userId: userID,
-          }),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        }
-      );
+      const response = await fetch(config.API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          title: userTitle,
+          body: userText,
+          userId: userID,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
       if (!response.ok) {
         context.setNewFormError("Error from serveer");
         return;

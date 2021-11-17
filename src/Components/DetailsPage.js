@@ -4,6 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import classes from "./DetailsPage.module.css";
 
 import Context from "../store/Context";
+import config from "../config.json";
 
 const DetailsPage = () => {
   const context = useContext(Context);
@@ -14,9 +15,7 @@ const DetailsPage = () => {
   useEffect(() => {
     const dataWithID = async () => {
       try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/${context.clickedID}`
-        );
+        const response = await fetch(`${config.API_URL}${context.clickedID}`);
         if (!response.ok) {
           context.setErrorDetailsPage("Something went wrong!!!!");
         }

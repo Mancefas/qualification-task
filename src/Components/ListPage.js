@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import Container from "@mui/material/Container";
 
 import Context from "../store/Context";
+import config from "../config.json";
 
 const ListPage = () => {
   const context = useContext(Context);
@@ -12,9 +13,7 @@ const ListPage = () => {
   useEffect(() => {
     const listDataApiCall = async () => {
       try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/posts"
-        );
+        const response = await fetch(config.API_URL);
         const data = await response.json();
 
         if (!response.ok) {
