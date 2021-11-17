@@ -17,6 +17,8 @@ const Context = React.createContext({
   closeHandler: () => {},
   errorListPage: null,
   setErrorListPage: () => {},
+  newFormError: null,
+  setNewFormError: () => {},
 });
 
 export const ContextProvider = (props) => {
@@ -39,6 +41,7 @@ export const ContextProvider = (props) => {
   };
 
   const [errorListPage, setErrorListPage] = useState();
+  const [newFormError, setNewFormError] = useState();
 
   return (
     <Context.Provider
@@ -59,6 +62,8 @@ export const ContextProvider = (props) => {
         closeHandler,
         errorListPage,
         setErrorListPage,
+        newFormError,
+        setNewFormError,
       }}
     >
       {props.children}
