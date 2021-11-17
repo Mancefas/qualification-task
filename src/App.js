@@ -23,6 +23,7 @@ function App() {
                 display: "flex",
                 justifyContent: "space-around",
                 paddingTop: "3rem",
+                minHeight: "90vh",
               }}
             >
               <CircularProgress size={"3.5rem"} />

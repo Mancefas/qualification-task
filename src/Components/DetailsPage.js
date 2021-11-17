@@ -31,7 +31,9 @@ const DetailsPage = () => {
   }, [context.clickedID]);
 
   return (
-    <Container sx={{ paddingBottom: "2rem", paddingTop: "12vh" }}>
+    <Container
+      sx={{ paddingBottom: "2rem", paddingTop: "12vh", minHeight: "90vh" }}
+    >
       {context.errorDetailsPage && (
         <Container
           sx={{
