@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
@@ -16,12 +16,14 @@ function App() {
   return (
     <>
       <Header />
-      <section>
-        <Route path="/form-page">
-          <NewRecordFormPage />
-        </Route>
-        <Route path="/">{context.showListPage && <ListPage />}</Route>
-      </section>
+      <Switch>
+        <section>
+          <Route path="/form-page" exact>
+            <NewRecordFormPage />
+          </Route>
+          <Route path="/">{context.showListPage && <ListPage />}</Route>
+        </section>
+      </Switch>
       <section>{context.showDetailsPage && <DetailsPage />}</section>
       <Footer />
     </>
