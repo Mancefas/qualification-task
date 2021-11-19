@@ -2,13 +2,16 @@ import React, { useContext, useState, useEffect } from "react";
 import { Button, Container, TextField, Alert, Paper, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Context from "../store/Context";
 import config from "../config.json";
 
 const NewRecordFormPage = () => {
   const context = useContext(Context);
+
+  const history = useHistory();
+
   useEffect(() => {
     context.setShowListPage(false);
     // eslint-disable-next-line
@@ -78,6 +81,7 @@ const NewRecordFormPage = () => {
       const data = await response.json();
       context.setNewFormData(data);
       context.setFromSent(true);
+      history.replace("/");
       setTimeout(() => {
         context.setFromSent(false);
       }, 2000);
@@ -94,10 +98,6 @@ const NewRecordFormPage = () => {
 
   return (
     <Container>
-      {context.formSent === true && (
-        <Alert severity="success">Form is sent!</Alert>
-      )}
-
       {context.newFormError && (
         <Container
           sx={{

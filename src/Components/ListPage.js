@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import Container from "@mui/material/Container";
+import { Container, Alert } from "@mui/material/";
 
 import Context from "../store/Context";
 import config from "../config.json";
@@ -50,6 +50,9 @@ const ListPage = () => {
 
   return (
     <Container sx={{ paddingBottom: "2rem" }}>
+      {context.formSent === true && (
+        <Alert severity="success">Form is sent!</Alert>
+      )}
       {context.errorListPage && (
         <Container
           sx={{
