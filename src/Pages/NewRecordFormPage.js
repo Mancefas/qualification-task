@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Button, Container, TextField, Alert, Paper, Box } from "@mui/material";
+import { Button, Container, TextField, Paper, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { Link, useHistory } from "react-router-dom";
