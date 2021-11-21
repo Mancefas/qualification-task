@@ -7,6 +7,9 @@ import { Link, useHistory } from "react-router-dom";
 import Context from "../store/Context";
 import config from "../config.json";
 
+import useValidation from "../hooks/use-validation";
+const notEmptyInput = (value) => value.trim() !== "";
+
 const NewRecordFormPage = () => {
   const context = useContext(Context);
 
@@ -18,43 +21,34 @@ const NewRecordFormPage = () => {
   }, [context.showListPage]);
 
   //User id validation
-  const [userID, setUserID] = useState("");
-  const [userIDTouched, setUserIDTouched] = useState(false);
-  const validUserID = userID.trim() !== "";
-  const userIDIsNotValid = !validUserID && userIDTouched;
-
-  const userIdInputHandler = (event) => {
-    setUserID(event.target.value);
-  };
-  const userIDTouchedHandler = () => {
-    setUserIDTouched(true);
-  };
+  const {
+    value: userID,
+    valid: validUserID,
+    notValid: userIDIsNotValid,
+    userInputHandler: userIdInputHandler,
+    userInputTouchedHandler: userIDTouchedHandler,
+    reset: setUserID,
+  } = useValidation(notEmptyInput);
 
   //Title validation
-  const [userTitle, setUserTitle] = useState("");
-  const [userTitleTouched, setUserTitleTouched] = useState(false);
-  const validTitle = userTitle.trim() !== "";
-  const userTitleIsNotValid = !validTitle && userTitleTouched;
-
-  const userTitleInputHandler = (event) => {
-    setUserTitle(event.target.value);
-  };
-  const userTitleTouchedHandler = () => {
-    setUserTitleTouched(true);
-  };
+  const {
+    value: userTitle,
+    valid: validTitle,
+    notValid: userTitleIsNotValid,
+    userInputHandler: userTitleInputHandler,
+    userInputTouchedHandler: userTitleTouchedHandler,
+    reset: setUserTitle,
+  } = useValidation(notEmptyInput);
 
   //Text validation
-  const [userText, setUserText] = useState("");
-  const [userTextTouched, setUserTextTouched] = useState(false);
-  const validText = userText.trim() !== "";
-  const userTextIsNotValid = !validText && userTextTouched;
-
-  const userTextInputHandler = (event) => {
-    setUserText(event.target.value);
-  };
-  const userTextTouchedHandler = () => {
-    setUserTextTouched(true);
-  };
+  const {
+    value: userText,
+    valid: validText,
+    notValid: userTextIsNotValid,
+    userInputHandler: userTextInputHandler,
+    userInputTouchedHandler: userTextTouchedHandler,
+    reset: setUserText,
+  } = useValidation(notEmptyInput);
 
   let formInputsValid = false;
   if (validUserID && validTitle && validText) {
@@ -89,9 +83,9 @@ const NewRecordFormPage = () => {
       context.setNewFormError(error);
     }
 
-    setUserID("");
-    setUserTitle("");
-    setUserText("");
+    setUserID();
+    setUserTitle();
+    setUserText();
 
     context.setShowListPage(true);
   };
