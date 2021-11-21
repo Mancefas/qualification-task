@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Button, Container, TextField, Paper, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -138,6 +138,7 @@ const NewRecordFormPage = () => {
               onChange={userIdInputHandler}
               value={userID}
               onBlur={userIDTouchedHandler}
+              helperText={userIDIsNotValid ? "ID is needed" : ""}
               label="User id"
               id="user-id"
               fullWidth
@@ -148,6 +149,7 @@ const NewRecordFormPage = () => {
               onChange={userTitleInputHandler}
               onBlur={userTitleTouchedHandler}
               value={userTitle}
+              helperText={userTitleIsNotValid ? "Title is needed" : ""}
               label="Title"
               id="title"
               fullWidth
@@ -158,6 +160,7 @@ const NewRecordFormPage = () => {
               onBlur={userTextTouchedHandler}
               onChange={userTextInputHandler}
               value={userText}
+              helperText={userTextIsNotValid ? "Text is needed" : ""}
               label="Text"
               id="body"
               fullWidth
