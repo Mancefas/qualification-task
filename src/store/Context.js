@@ -40,7 +40,7 @@ export const ContextProvider = (props) => {
   const [errorDetailsPage, setErrorDetailsPage] = useState();
   const closeHandler = () => {
     setShowDetailsPage(false);
-    setShowListPage(true);
+    setShowListPage(false);
     setShowNewRecordForm(true);
   };
 
