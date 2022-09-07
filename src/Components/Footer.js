@@ -29,9 +29,12 @@ export default function Footer() {
         }}
       >
         <Container maxWidth="sm">
-          <Typography variant="body1" sx={{ color: "#1976D2" }}>
+          <a
+            style={{ textDecoration: "none" }}
+            href="https://mantvydasportfolio.site/"
+          >
             Made by Mantvydas
-          </Typography>
+          </a>
           <Copyright />
         </Container>
       </Box>
